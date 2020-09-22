@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+
+            </div>
+            <div class="col-sm">
+                {% load crispy_forms_tags %}
+                <form method="post" id="signup" class="col-xs-1 text-center" id="a">
+                    {% csrf_token %}
+                    <p>{{ form|crispy }}</p>
+                    <p> آیا قبلا ثبت نام کرده ای؟ <a href='/user/login'>ورود</a></p>
+                    <button class='site-btn'>ثبت نام</button>
+
+                </form>
+            </div>
+            <div class="col-sm">
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

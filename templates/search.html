@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+
+
+    <div class="row featured__filter">
+        {%if notpro%}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+
+                </div>
+                <div class="col-sm">
+                    <ul class="b">تعداد انتخابی محصول بیشتر از تعداد انبار است!!!</ul>
+                    <ul class="b"> لطفا دوباره تلاش کنید</ul>
+                </div>
+                <div class="col-sm">
+
+                </div>
+            </div>
+        </div>
+
+        {%endif%}
+
+        {% for product in search_result%}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mix {{ product.sub_catagory.catogory_name }} fast">
+            <div class="featured__item">
+                <div class="featured__item__pic set-bg" data-setbg=" {{ product.image.url }} "
+                     href="{% url 'product-detail' product.id %}">
+                    <ul class="featured__item__pic__hover">
+
+                    </ul>
+                </div>
+                <div class="featured__item__text">
+                    <h6><a href="{% url 'product-detail' product.id %}">{{ product.name }}</a>
+                    </h6>
+                    <h5><a href="{% url 'product-detail' product.id %}">{{ product.price }}</a>
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+</body>
+</section>
+</html>
+{%endblock%}

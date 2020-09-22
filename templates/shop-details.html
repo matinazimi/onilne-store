@@ -1,0 +1,444 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<!-- Breadcrumb Section Begin -->
+    {% if product.category.image %}
+    <section class="breadcrumb-section set-bg" data-setbg="{{product.category.image.url}}">
+    {%else%}
+    <section class="breadcrumb-section set-bg" data-setbg="#">
+        {%endif%}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>{{ product.sub_catagory }}</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                 src="{{ product.image.url }}" alt="">
+                        </div>
+                        <!--                    {#-->
+                        <!--                    <div class="product__details__pic__slider owl-carousel">#}-->
+                        <!--                        {# <img data-imgbigurl="{{ product.image }}" #}-->
+                        <!--                                {# src="{{ product.image }}" alt="">#}-->
+                        <!--                        {# <img data-imgbigurl="img/product/details/product-details-3.jpg" #}-->
+                        <!--                                {# src="{% static 'img/product/details/thumb-2.jpg' %}" alt="">#}-->
+                        <!--                        {# <img data-imgbigurl="img/product/details/product-details-5.jpg" #}-->
+                        <!--                                {# src="img/product/details/thumb-3.jpg" alt="">#}-->
+                        <!--                        {# <img data-imgbigurl="img/product/details/product-details-4.jpg" #}-->
+                        <!--                                {# src="img/product/details/thumb-4.jpg" alt="">#}-->
+                        <!--                        {#-->
+                        <!--                    </div>-->
+                        <!--                    #}-->
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3>{{ product.name}}</h3>
+<!--                        <div class="product__details__rating">-->
+<!--                            <i class="fa fa-star"></i>-->
+<!--                            <i class="fa fa-star"></i>-->
+<!--                            <i class="fa fa-star"></i>-->
+<!--                            <i class="fa fa-star"></i>-->
+<!--                            <i class="fa fa-star-half-o"></i>-->
+<!--                            <span>(18 reviews)</span>-->
+<!--                        </div>-->
+                        <div class="product__details__price">{{product.price}} تومان</div>
+                        <p>{{ product.descriptions }}</p>
+
+                        {% if user.is_authenticated %}
+
+                        <form action="{% url 'add-cart' user.id %} " method="post">
+                            {% else %}
+                            <form action="{% url 'add-cart' 5 %} " method="post">
+
+                                {% endif %}
+
+                                {% csrf_token %}
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+
+                                        <div class="pro-qty">
+
+
+                                            <input type="text" value="1" placeholder="number" name="number">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="me-button" type="submit">add cart</button>
+                                <div class="small"><input type="hidden" value="{{ product.id }}" name="products_id">
+                                </div>
+
+                            </form>
+
+
+                                                    <ul>
+                                                           {%if pronum %}
+
+                                                        <li ><b>موجود در فروشگاه</b><b>تعداد {{pronum}}</b> </li>
+                                                        {%else%}
+                                                        <li ><b>ناموجود در فروشگاه </b><b></b></li>
+                                                        {%endif%}
+<!--                                                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>-->
+<!--                                                        <li><b>Weight</b> <span>0.5 kg</span></li>-->
+<!--                                                        <li><b>Share on</b>-->
+<!--                                                            <div class="share">-->
+
+<!--                                                            </div>-->
+                                                        </li>
+                                                    </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                   aria-selected="true"></a>
+
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+
+                                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                    <div class="product__details__tab__desc">
+                                        {%if digital%}
+                                        <h6>Products Infomation</h6>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col">ردیف</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>{{digital.color}}</td>
+                                                <td>رنگ</td>
+                                                <th scope="row">1</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.screen_size}}</td>
+                                                <td>سایز صفحه</td>
+                                                <th scope="row">2</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.ram}}</td>
+                                                <td>رم</td>
+                                                <th scope="row">3</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.harddisck}}</td>
+                                                <td>هارد</td>
+                                                <th scope="row">4</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.screen_resolution}}</td>
+                                                <td>رزولیشن صفحه</td>
+                                                <th scope="row">5</th>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.cpu}}</td>
+                                                <td>cpu</td>
+                                                <th scope="row">6</th>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.os}}</td>
+                                                <td>سیستم عامل</td>
+                                                <th scope="row">7</th>
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{digital.touch}}</td>
+                                                <td>صفحه لمسی</td>
+                                                <th scope="row">8</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{digital.weight}}</td>
+                                                <td>وزن</td>
+                                                <th scope="row">9</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{digital.year}}</td>
+                                                <td>سال تولید</td>
+                                                <th scope="row">10</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        {%endif%}
+                                        {%if homeapp%}
+                                        <h6>Products Infomation</h6>
+                                        <table class="table table-striped">
+
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col">ردیف</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>{{homeapp.color}}</td>
+                                                <td>رنگ</td>
+                                                <th scope="row">1</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{homeapp.volum}}</td>
+                                                <td>حجم</td>
+                                                <th scope="row">2</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{homeapp.capacity}}</td>
+                                                <td>ظرفیت</td>
+                                                <th scope="row">3</th>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>{{homeapp.size}}</td>
+                                                <td>سایز</td>
+                                                <th scope="row">4</th>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>{{homeapp.material}}</td>
+                                                <td>جنس</td>
+                                                <th scope="row">5</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{homeapp.weight}}</td>
+                                                <td>وزن</td>
+                                                <th scope="row">6</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{homeapp.year}}</td>
+                                                <td>سال تولید</td>
+                                                <th scope="row">7</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        {%endif%}
+                                        {%if cul%}
+                                        <h6>Products Infomation</h6>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col">ردیف</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>{{cul.creator}}</td>
+                                                <td>خالق</td>
+                                                <th scope="row">1</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cul.translator}}</td>
+                                                <td>مترجم</td>
+                                                <th scope="row">2</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cul.publisher}}</td>
+                                                <td>ناشر</td>
+                                                <th scope="row">3</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cul.gener}}</td>
+                                                <td>ژانر</td>
+                                                <th scope="row">4</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cul.duration}}</td>
+                                                <td>مدت,مقدار</td>
+                                                <th scope="row">5</th>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cul.year}}</td>
+                                                <td>سال</td>
+                                                <th scope="row">6</th>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                        {%endif%}
+                                        {%if clo%}
+                                        <h6>Products Infomation</h6>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col">ردیف</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>{{clo.color}}</td>
+                                                <td>رنگ</td>
+                                                <th scope="row">1</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{clo.size}}</td>
+                                                <td>سایز</td>
+                                                <th scope="row">2</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{clo.country}}</td>
+                                                <td>کشور سازنده</td>
+                                                <th scope="row">3</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{clo.material}}</td>
+                                                <td>جنس</td>
+                                                <th scope="row">4</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{clo.weight}}</td>
+                                                <td>وزن</td>
+                                                <th scope="row">5</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{clo.year}}</td>
+                                                <td>سال تولید</td>
+                                                <th scope="row">6</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        {%endif%}
+                                        {%if cos%}
+                                        <h6>Products Infomation</h6>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                <th scope="col">ردیف</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td>{{cos.color}}</td>
+                                                <td>رنگ</td>
+                                                <th scope="row">1</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cos.gender}}</td>
+                                                <td>جنسیت</td>
+                                                <th scope="row">2</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cos.country}}</td>
+                                                <td>کشور سازنده</td>
+                                                <th scope="row">3</th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>{{cos.smell}}</td>
+                                                <td>رایحه</td>
+                                                <th scope="row">4</th>
+
+                                            </tr>
+
+                                            <td>{{cos.volume}}</td>
+                                            <td>حجم</td>
+                                            <th scope="row">5</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{cos.year}}</td>
+                                                <td>سال تولید</td>
+                                                <th scope="row">6</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        {%endif%}
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Product Details Section End -->
+
+
+    {% endblock %}
+
+    </body>
+

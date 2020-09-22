@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <body>
+
+    <!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="shoping__product">محصول</th>
+                                <th></th>
+                                <th>قیمت</th>
+                                <th></th>
+                                <th>تعداد</th>
+                                <th></th>
+                                <th>قیمت کل</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <form action="{% url 'delete-middle' user.id %} " method="post">
+                            <tbody>
+                            {% for elm in middle %}
+
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="{{ elm.product.image.url }}" width='200' height="100" alt="">
+                                        <h5>{{ elm.product.name }}</h5>
+                                    </td>
+                                    <td></td>
+                                    <td class="shoping__cart__price">
+                                        {{ elm.product.price }}
+                                    </td>
+                                    <td></td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            {{ elm.purchase_number }}
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td class="shoping__cart__total">
+                                        {{ elm.price }}
+                                    </td>
+                                    <td>
+
+                                        <span> <input type="hidden" value="{{ elm.id }}" name="delete_middle" >
+<!--                                <button type="submit" class="site-btn" style="height:40px;width:90px" >حذف</button>-->
+                                            <a class="primary-btn" href="{% url 'delete-middle' elm.id %}" methods="post">حذف</a>
+                                        </span>
+                                    </td>
+
+
+                                </tr>
+                                </form>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+
+                        <a href="{% url 'home' %}" class="primary-btn cart-btn cart-btn-right">
+                            ادامه خرید</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>خریدها</h5>
+                        <ul>
+
+                            <li>تعداد کل کالا ها<span>{{ carts.TotalPro }}</span></li>
+                            <li>قیمت کل <span>{{ carts.totalprices }}</span></li>
+                        </ul>
+                        <a href="{% url 'factor' %}" class="primary-btn">ثبت خرید</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shoping Cart Section End -->
+
+
+    </body>
+
+{% endblock %}

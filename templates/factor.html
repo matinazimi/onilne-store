@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+    </div>
+    <div class="col-sm">
+
+      <h3 class="b">خرید موفق بود</h3>
+      <h3>...........................................................</h3>
+
+        <table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">ردیف</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>نام</td>
+      <td>{{factor.user}}</td>
+
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>کارت</td>
+      <td>{{factor.cart}}</td>
+
+    </tr>
+    <tr>
+<th scope="row">3</th>
+      <td >تعداد محصولات</td>
+      <td>{{factor.number_product}}</td>
+
+    </tr>
+      <tr>
+         <th scope="row">4</th>
+      <td>قیمت کل</td>
+      <td>{{factor.total_price}}</td>
+
+    </tr>
+      <tr>
+        <th scope="row">5</th>
+      <td>تاریخ</td>
+      <td>{{factor.date}}</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+    </div>
+    <div class="col-sm">
+
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>
+{% endblock %}
