@@ -23,7 +23,7 @@ router.register('middlecart', views.BuyingView)
 router.register('buy', views.BuyingView,basename='buy')
 router.register('factor', views.FactorView)
 router.register('search', views.SearchView,basename='search')
-router.register('', views.RootView)
+
 
 
 

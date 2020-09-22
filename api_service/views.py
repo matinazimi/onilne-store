@@ -258,6 +258,4 @@ class FactorView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class RootView(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = RootSerializer
+

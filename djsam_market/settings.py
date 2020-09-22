@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -84,12 +84,15 @@ WSGI_APPLICATION = 'djsam_market.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djsam3',
-        'USER': 'matin',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'sqlite3.db',
+
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'djsam3',
+        # 'USER': 'matin',
+        # 'PASSWORD': '1234',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432'
 
         # 'NAME': 'hfvtblcn',
         # 'USER': 'hfvtblcn',

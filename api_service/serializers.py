@@ -5,9 +5,7 @@ from finance.models import *
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
-    # brands = serializers.PrimaryKeyRelatedField(queryset=Brand.objects.all())
     brands = serializers.StringRelatedField()
-
 
     class Meta:
         model = Product
@@ -107,10 +105,3 @@ class FactorSerializer(serializers.ModelSerializer):
         model = Finance
         fields = '__all__'
 
-class RootSerializer(serializers.ModelSerializer):
-    # middle_cart= serializers.PrimaryKeyRelatedField(queryset=Middle_cart.objects.all(), many=True)
-    middle_cart= serializers.StringRelatedField( many=True,read_only=True)
-
-    class Meta:
-        model=Product
-        fields = '__all__'
