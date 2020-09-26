@@ -1,9 +1,12 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+
+{% load cache %}
 <!-- Breadcrumb Section Begin -->
-    {% if product.category.image %}
-    <section class="breadcrumb-section set-bg" data-setbg="{{product.category.image.url}}">
+{%cache 20 pro%}
+{% if product.category.image %}
+<section class="breadcrumb-section set-bg" data-setbg="{{product.category.image.url}}">
     {%else%}
     <section class="breadcrumb-section set-bg" data-setbg="#">
         {%endif%}
@@ -19,6 +22,7 @@
             </div>
         </div>
     </section>
+    {% endcache %}
     <!-- Breadcrumb Section End -->
 
     <!-- Product Details Section Begin -->
@@ -49,22 +53,22 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>{{ product.name}}</h3>
-<!--                        <div class="product__details__rating">-->
-<!--                            <i class="fa fa-star"></i>-->
-<!--                            <i class="fa fa-star"></i>-->
-<!--                            <i class="fa fa-star"></i>-->
-<!--                            <i class="fa fa-star"></i>-->
-<!--                            <i class="fa fa-star-half-o"></i>-->
-<!--                            <span>(18 reviews)</span>-->
-<!--                        </div>-->
+                        <!--                        <div class="product__details__rating">-->
+                        <!--                            <i class="fa fa-star"></i>-->
+                        <!--                            <i class="fa fa-star"></i>-->
+                        <!--                            <i class="fa fa-star"></i>-->
+                        <!--                            <i class="fa fa-star"></i>-->
+                        <!--                            <i class="fa fa-star-half-o"></i>-->
+                        <!--                            <span>(18 reviews)</span>-->
+                        <!--                        </div>-->
                         <div class="product__details__price">{{product.price}} تومان</div>
                         <p>{{ product.descriptions }}</p>
 
                         {% if user.is_authenticated %}
 
-                        <form action="{% url 'add-cart' user.id %} " method="post">
+                        <form action="{% url 'add-cart'%} " method="post">
                             {% else %}
-                            <form action="{% url 'add-cart' 5 %} " method="post">
+                            <form action="{% url 'add-cart'%} " method="post">
 
                                 {% endif %}
 
@@ -89,21 +93,21 @@
                             </form>
 
 
-                                                    <ul>
-                                                           {%if pronum %}
+                            <ul>
+                                {%if pronum %}
 
-                                                        <li ><b>موجود در فروشگاه</b><b>تعداد {{pronum}}</b> </li>
-                                                        {%else%}
-                                                        <li ><b>ناموجود در فروشگاه </b><b></b></li>
-                                                        {%endif%}
-<!--                                                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>-->
-<!--                                                        <li><b>Weight</b> <span>0.5 kg</span></li>-->
-<!--                                                        <li><b>Share on</b>-->
-<!--                                                            <div class="share">-->
+                                <li><b>موجود در فروشگاه</b><b>تعداد {{pronum}}</b></li>
+                                {%else%}
+                                <li><b>ناموجود در فروشگاه </b><b></b></li>
+                                {%endif%}
+                                <!--                                                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>-->
+                                <!--                                                        <li><b>Weight</b> <span>0.5 kg</span></li>-->
+                                <!--                                                        <li><b>Share on</b>-->
+                                <!--                                                            <div class="share">-->
 
-<!--                                                            </div>-->
-                                                        </li>
-                                                    </ul>
+                                <!--                                                            </div>-->
+                                </li>
+                            </ul>
                     </div>
                 </div>
                 <div class="col-lg-12">

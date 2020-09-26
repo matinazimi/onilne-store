@@ -18,6 +18,7 @@ from django.urls import path, include
 from .views import base, SearchProduct
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('', include('product.urls')),
     path('', include('finance.urls')),
     path('api/', include('api_service.urls')),
+    path('api-token-auth/', obtain_jwt_token),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

@@ -152,7 +152,6 @@ class CartView(viewsets.ModelViewSet):
     """
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
@@ -177,7 +176,7 @@ class MiddleCartView(viewsets.ModelViewSet):
     """
     queryset = Middle_cart.objects.all()
     serializer_class = BuyingSerializer
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
+
     permission_classes = [IsAuthenticated]
 
 
@@ -217,7 +216,7 @@ class BuyingView(viewsets.ModelViewSet):
     """
     queryset = Middle_cart.objects.all()
     serializer_class = BuyingSerializer
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
+
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
@@ -239,7 +238,6 @@ class FactorView(viewsets.ModelViewSet):
     """
     queryset = Finance.objects.all()
     serializer_class = FactorSerializer
-    authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):

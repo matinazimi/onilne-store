@@ -1,13 +1,14 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
 
 from product.views import *
 from product.models import *
 
 
-@login_required(login_url='log-in')
-def number(request, user_id):
-    if request.method == 'POST':
+class FinanceView(View):
+
+    def post(self, request, *args, **kwargs):
+
         product_id = request.POST['products_id']
         numbers = request.POST['number']
         pn = Product.objects.get(id=product_id)
@@ -21,14 +22,16 @@ def number(request, user_id):
         if int(f) > int(pn.number):
             return render(request, 'search.html', {'notpro': pn})
         createmiddlecart(request, product_id, numbers)
-        carts = Cart.objects.get(user_id=user_id)
+
+        carts = Cart.objects.get(user_id=request.user.id)
         middlcart = Middle_cart.objects.all().filter(cart_id=carts.id)
         context = {'middle': middlcart,
                    'carts': carts,
                    }
         return render(request, 'shoping-cart.html', context)
-    else:
-        carts = Cart.objects.get(user_id=user_id)
+
+    def get(self, request, *args, **kwargs):
+        carts = Cart.objects.get(user_id=request.user.id)
         middlcart = Middle_cart.objects.all().filter(cart_id=carts.id)
         context = {'middle': middlcart,
                    'carts': carts,
@@ -38,18 +41,15 @@ def number(request, user_id):
 
 def Delete_middle(request, pro_id):
     Middle_cart.objects.get(id=pro_id).delete()
-    return number(request, user_id=request.user.id)
+    return redirect('add-cart')
 
 
 def get_or_createcart(request):
     if not Cart.objects.filter(user_id=request.user.id):
         cart = Cart.objects.create(user_id=request.user.id)
         return cart.id
-        # Middle_cart.objects.create(cart_id=cart.id, product_id=product_id, purchase_number=number)
     else:
-
         cart = Cart.objects.get(user_id=request.user.id)
-
         return cart.id
 
 

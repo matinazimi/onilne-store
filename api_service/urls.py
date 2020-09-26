@@ -4,9 +4,7 @@ from rest_framework import routers
 
 from . import views
 
-
-
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 router.register('products', views.ProductView)
 router.register('category', views.CategorylView)
 router.register('subcategory', views.SubCatView)
@@ -25,10 +23,7 @@ router.register('factor', views.FactorView)
 router.register('search', views.SearchView,basename='search')
 
 
-
-
-
-
 urlpatterns = [
     path('', include(router.urls))
+
 ]

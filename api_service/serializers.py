@@ -91,7 +91,7 @@ class MiddleCartSerializer(serializers.HyperlinkedModelSerializer):
     cart = serializers.StringRelatedField()
     class Meta:
         model = Middle_cart
-        fields = ['__all__','cart']
+        fields = '__all__'
 
 
 class BuyingSerializer(serializers.ModelSerializer):
