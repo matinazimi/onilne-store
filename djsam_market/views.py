@@ -4,13 +4,7 @@ from finance.models import *
 from django.db.models import Q
 from django.views.generic.base import View
 
-# def base(request):
-#     if request.method == 'GET':
-#         return render(request, 'index.html')
 
-# def detail(request):
-#     if request.method == 'GET':
-#         return render(request, 'shop-details.html')
 
 
 def base(request):
@@ -36,19 +30,8 @@ def base(request):
 
 
 class SearchProduct(View):
-    def get(self, request, *args, **kwargs):
-        pass
-    #     print('omad')
-    #     search_text = request.GET['search']
-    #     result = Product.objects.filter(
-    #         Q(name__icontains=search_text) |
-    #         Q(price__icontains=search_text)
-    #     ).distinct()
-    #     print('1vomi res', result)
-    #     return render(request, 'search.html', {'search_result': result})
+
     def post(self, request, *args, **kwargs):
-        # form = SearchForm(request.POST)
-        # search_text = form['search'].value()
 
         search_text = request.POST['search']
         result = Product.objects.filter(

@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 
 from product.views import *
 from product.models import *
 
 
-class FinanceView(View):
+class FinanceView(LoginRequiredMixin, View):
+    login_url = "/user/login/"
 
     def post(self, request, *args, **kwargs):
 
